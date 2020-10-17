@@ -1,4 +1,4 @@
-//The user has to create a spreadsheet first.
+//The user has to create a spreadsheet first with two sheets, named "users" and "files."
 
 //Constructor
 function File(posF,id,name){
