@@ -51,13 +51,13 @@ let urlArray= sheetF.getRange(2,1,rowNumF-1,1).getValues();
 function permission()
 {
   let fileArray=[];
-  for(let i=2; i<=rowNumF;i++)
+  for(let i in urlArray)
   {
     try{
       fileArray.push(new File(urlArray[i]));
     }
     catch(err){
-      sheetF.getRange().setValue(err);
+      sheetF.getRange(i+2,2).setValue(err);
       Logger.log('URL error.');
       throw 'Terminated.'
     }
@@ -71,7 +71,7 @@ function permission()
         file.fOrF.addViewer(user);
       }
       catch(err){
-        sheetU.getRange(i+2,2).setValue('Failed');
+        sheetU.getRange(i+2,2).setValue('Failed');  //assuming the error messages are in the second column
         Logger.log('Error occured while trying to add a viewer.');
       }
     }
