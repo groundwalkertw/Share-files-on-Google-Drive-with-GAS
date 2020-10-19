@@ -18,7 +18,7 @@ function File(url)
       this.fOrF=DriveApp.getFileById(this.id()); //file or folder
     }
     catch(e){
-      throw `${url} is an invalid link to a file!`;
+      throw `Invalid link to a file!`;
     }
     
   }
@@ -29,12 +29,12 @@ function File(url)
       this.fOrF=DriveApp.getFolderById(this.id());
     }
     catch(e){
-      throw `${url} is an invalid link to a folder!`;
+      throw `Invalid link to a folder!`;
     }    
   }
   else
   {
-    throw `${url} is a link neither to a file nor to a folder!`;
+    throw `Neither a link to a file nor to a folder!`;
   }
   
 }
@@ -48,26 +48,32 @@ let rowNumU=sheetU.getLastRow();
 
 let urlArray= sheetF.getRange(2,1,rowNumF-1,1).getValues();
 
-
 function permission()
 {
   let fileArray=[];
-  try
+  for(let i=2; i<=rowNumF;i++)
   {
-    for(let i=2; i<=rowNumF;i++)
-    {
+    try{
       fileArray.push(new File(urlArray[i]));
     }
+    catch(err){
+      sheetF.getRange().setValue(err);
+      Logger.log('URL error.');
+      throw 'Terminated.'
+    }
   }
-  catch(e)
-  {
-    Logger.log(e);
-  }
-    
-  
-    
-  
-  
+      
   let userArray= sheetU.getRange(2,1,rowNumU-1,1).getValues(); //assuming the google accounts are in the first column
-  
+  for(let i in userArray){
+    for(let file of fileArray)
+    {
+      try{
+        file.fOrF.addViewer(user);
+      }
+      catch(err){
+        sheetU.getRange(i+2,2).setValue('Failed');
+        Logger.log('Error occured while trying to add a viewer.');
+      }
+    }
+  }
 }
