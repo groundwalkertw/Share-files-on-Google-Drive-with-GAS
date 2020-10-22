@@ -20,6 +20,7 @@ class File{
     else if(idStr=this.url.match(regexFolder)){
       this.id=idStr;
       try{
+        //the class file or folder
         this.fOrF=DriveApp.getFolderById(this.id());
       }
       catch(err){
@@ -29,5 +30,18 @@ class File{
     else{
       throw `Neither a link to a file nor to a folder!`;
     }
+  }
+  //method: add a viewer
+  addViewer(user){
+    try{
+      this.fOrF.addViewer(user);
+    }
+    catch(err){
+      throw `Failed to add viewer ${user}`;
+    }    
+  }
+  //method: add viewers
+  addViewers(userArray){
+    this.fOrF.addViewers(userArray);  
   }
 }
