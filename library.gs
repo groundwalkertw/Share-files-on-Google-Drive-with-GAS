@@ -57,7 +57,7 @@ class UrlArray extend Array{
         tmpArray.push(urls[i])
       }
       else{
-        throw `The string at the ${i}-th position is an invalid url.`;
+        throw `${i}-th position: Invalid url.`;
       }        
     }                
   }
@@ -71,7 +71,7 @@ class UrlArray extend Array{
         tmpArray.push(new File( this[i] ) );
       }
       catch(err){
-        throw `${i}-th position: ${err}`;
+        throw `${i}-th position: ${err}.`;
       }
     }
     
