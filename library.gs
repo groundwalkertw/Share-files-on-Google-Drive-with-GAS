@@ -1,4 +1,4 @@
-//Constructor
+//Class and constructor File
 class File{
   constructor(url){
     this.url=url;
@@ -45,3 +45,39 @@ class File{
     this.fOrF.addViewers(userArray);  
   }
 }
+
+//class url array
+
+class UrlArray extend Array{
+  constructor(urls){
+    let regex=/\bhttp/;
+    let tmpArray=[];
+    for(let i=0;i<urls.length;i++){
+      if(regex.test(urls[i])){
+        tmpArray.push(urls[i])
+      }
+      else{
+        throw `The string at the ${i}-th position is an invalid url.`;
+      }        
+    }                
+  }
+  
+  //method: return an array of files generated from the urls
+  toFiles(){
+    let tmpArray=[];
+    
+    for(let i=0;i<this.length;i++){
+      try{
+        tmpArray.push(new File( this[i] ) );
+      }
+      catch(err){
+        throw `${i}-th position: ${err}`;
+      }
+    }
+    
+    return tmpArray;
+  }
+}
+
+
+
