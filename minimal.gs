@@ -3,18 +3,23 @@
 const spreadSheet=SpreadsheetApp.getActive();
 const sheetF=spreadSheet.getSheetByName('files');
 const sheetU=spreadSheet.getSheetByName('users');
+const sheetS=spreadSheet.getSheetByName('settings');
 
 const rowNumF=sheetF.getLastRow();
 const rowNumU=sheetU.getLastRow();
 
-
 //key: whether to check the validity of individual Google accounts
 function permission(key=0)
 {
-  let urlArray= new UrlArray( sheetF.getRange(2,1,rowNumF-1,1).getValues() );
+  let settings=loadSettings(sheetS);
+  let googleCol=settings.users.gmail || 1; //where the column of Google accounts is
+  let errorCol=settings.users.error || 2; //where the column of errors is
+  let urlCol=settings.files.url || 1;
+  
+  let urlArray= new UrlArray( sheetF.getRange(2,urlCol,rowNumF-1,1).getValues() );
   let fileArray=urlArray.toFiles();
       
-  let userArray= sheetU.getRange(2,1,rowNumU-1,1).getValues(); //assuming the google accounts are in the first column
+  let userArray= sheetU.getRange(2,googleCol,rowNumU-1,1).getValues(); 
   
   for(let file of fileArray){
     if(!key){
@@ -27,7 +32,7 @@ function permission(key=0)
         }       
       }
       catch(err){
-        sheetU.getRange(i+2,2).setValue('Failed');  //assuming the error messages are in the second column
+        sheetU.getRange(i+2,2).setValue('Failed');  
         Logger.log(err);
       }       
     }      
