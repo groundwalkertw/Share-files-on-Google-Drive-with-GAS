@@ -1,7 +1,11 @@
+//this script should be bound to the form
+
+//there are several keywords: "address", "surname", "token", "title", "gmail", "sent", "file"
+
 const pos={
   address: 1,
   surname: 2,
-  code: 3,
+  token: 3,
   title: 5,
   gmail: 6,
   time: 7,
@@ -11,6 +15,7 @@ const pos={
   file: 11
 };
 
+//the values depend on how the form is arranged
 const posF={
   request: 0,
   code: 1,
