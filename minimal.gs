@@ -1,11 +1,11 @@
 //The user has to create a spreadsheet first with two sheets, named "users" and "files." Folders can also be shared.
 
-let spreadSheet=SpreadsheetApp.getActive();
-let sheetF=spreadSheet.getSheetByName('files');
-let sheetU=spreadSheet.getSheetByName('users');
+const spreadSheet=SpreadsheetApp.getActive();
+const sheetF=spreadSheet.getSheetByName('files');
+const sheetU=spreadSheet.getSheetByName('users');
 
-let rowNumF=sheetF.getLastRow();
-let rowNumU=sheetU.getLastRow();
+const rowNumF=sheetF.getLastRow();
+const rowNumU=sheetU.getLastRow();
 
 
 //key: whether to check the validity of individual Google accounts
