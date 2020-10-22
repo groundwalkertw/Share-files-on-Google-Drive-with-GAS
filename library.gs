@@ -55,6 +55,7 @@ class File{
 
 class UrlArray extends Array{
   constructor(urls){
+    super();
     let regex=/\bhttps/;
     let tmpArray=[];
     for(let i=0;i<urls.length;i++){
