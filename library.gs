@@ -84,5 +84,39 @@ class UrlArray extends Array{
   }
 }
 
+function loadSettings(sheetS){
+  const colNum=sheetS.getLastColumn();
+  const rowNum=sheetS.getLastRow();
+  let settings={};
+  
+  for(let i=1;i<rowNum;i=i+2){
+    
+    let tmpArray=sheetS.getRange(i,1,2,colNum).getValues();
+    let tmpObj;
+    
+    switch(tmpArray[0][0]){
+      case 'files': tmpObj= ( settings.files={} );
+        break;
+      case 'users': tmpObj= ( settings.users={} );
+        break;
+      case 'form': tmpObj= ( settings.form={} );
+        break;
+      default:
+        throw 'Unable to recognize the settings.';
+    }
+    
+    for(let j=1;j<tmpArray[0].length;j++){
+      if(tmpArray[0][j]){
+        tmpObj[tmpArray[0][j]]=tmpArray[1][j];
+      }
+      else{
+        break;
+      }      
+    }
+    
+  }
+  return settings;
+}
+
 
 
