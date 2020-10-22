@@ -27,11 +27,11 @@ function permission()
   for(let i in userArray){
     for(let file of fileArray){
       try{
-        file.fOrF.addViewer(user);
+        file.addViewer(user);
       }
       catch(err){
         sheetU.getRange(i+2,2).setValue('Failed');  //assuming the error messages are in the second column
-        Logger.log('Error occured while trying to add a viewer.');
+        Logger.log(err);
       }
     }
   }
