@@ -10,28 +10,25 @@ class File{
   
     let idStr;
       //check whether files/folders are valid
-    if(idStr=this.url.match(regexFile))
-    {
+    if(idStr=this.url.match(regexFile)){
       this.id=idStr;
       try{
         this.fOrF=DriveApp.getFileById(this.id()); //file or folder
       }
-      catch(e){
+      catch(err){
         throw `Invalid link to a file!`;
       } 
     }
-    else if(idStr=this.url.match(regexFolder))
-    {
+    else if(idStr=this.url.match(regexFolder)){
       this.id=idStr;
       try{
         this.fOrF=DriveApp.getFolderById(this.id());
       }
-      catch(e){
+      catch(err){
         throw `Invalid link to a folder!`;
       }    
     }
-    else
-    {
+    else{
       throw `Neither a link to a file nor to a folder!`;
     }
   }
@@ -49,8 +46,7 @@ let urlArray= sheetF.getRange(2,1,rowNumF-1,1).getValues();
 function permission()
 {
   let fileArray=[];
-  for(let i in urlArray)
-  {
+  for(let i in urlArray){
     try{
       fileArray.push(new File(urlArray[i]));
     }
@@ -63,8 +59,7 @@ function permission()
       
   let userArray= sheetU.getRange(2,1,rowNumU-1,1).getValues(); //assuming the google accounts are in the first column
   for(let i in userArray){
-    for(let file of fileArray)
-    {
+    for(let file of fileArray){
       try{
         file.fOrF.addViewer(user);
       }
