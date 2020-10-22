@@ -44,6 +44,9 @@ class File{
   addViewers(userArray){
     this.fOrF.addViewers(userArray);  
   }
+  getName(){
+    this.fOrF.getName();
+  }
 }
 
 //class url array
