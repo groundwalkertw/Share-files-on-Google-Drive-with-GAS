@@ -53,7 +53,7 @@ class File{
 
 //class url array
 
-class UrlArray extend Array{
+class UrlArray extends Array{
   constructor(urls){
     let regex=/\bhttps/;
     let tmpArray=[];
