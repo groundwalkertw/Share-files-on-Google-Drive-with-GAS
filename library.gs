@@ -30,6 +30,7 @@ class File{
     else{
       throw `Neither a link to a file nor to a folder!`;
     }
+    
   }
   //method: add a viewer
   addViewer(user){
@@ -44,8 +45,14 @@ class File{
   addViewers(userArray){
     this.fOrF.addViewers(userArray);  
   }
-  getName(){
-    this.fOrF.getName();
+  
+  //name: getter and setter
+  get name(){    
+    return (this._name?) this._name : this.fOrF.getName(); 
+  }
+  
+  set name(name){
+    this._name=name;
   }
 }
 
