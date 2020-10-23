@@ -5,26 +5,25 @@ class File{
     //regular expressions
     let regexFile=/\/d\/([^\/]+)/; //start with /d/, end with / 
     let regexFolder=/\/folders\/([^\?]+)/; //start with /folders/, end with ?
-  
-    let idStr;
+    let matchRes;
       //check whether files/folders are valid
-    if(idStr=this.url.match(regexFile)){
-      this.id=idStr;
+    if( matchRes=url.match(regexFile) ){
+      this.id=matchRes[1];
+      
       try{
-        this.fOrF=DriveApp.getFileById(this.id()); //file or folder
+        this.fOrF=DriveApp.getFileById(this.id); //file or folder
       }
       catch(err){
         throw `Invalid link to a file!`;
       } 
     }
-    else if(idStr=this.url.match(regexFolder)){
-      this.id=idStr;
+    else if( matchRes=url.match(regexFolder)){
+      this.id=matchRes[1];
       try{
-        //the class file or folder
-        this.fOrF=DriveApp.getFolderById(this.id());
+        this.fOrF=DriveApp.getFolderById(this.id);
       }
       catch(err){
-        throw `Invalid link to a folder!`;
+        throw `${err} Invalid link to a folder!`;
       }    
     }
     else{
@@ -54,19 +53,19 @@ class File{
 //class url array
 
 class UrlArray extends Array{
+  
   constructor(urls){
-    super();
     let regex=/\bhttps/;
     let tmpArray=[];
+    super();
     for(let i=0;i<urls.length;i++){
-      if(regex.test(urls[i])){
-        tmpArray.push(urls[i])
-      }
-      else{
+      if(!regex.test(urls[i])){
         throw `${i}-th position: Invalid url.`;
-      }        
-    }                
+      }
+    }
+    Object.assign(this,urls);
   }
+
   
   //method: return an array of files generated from the urls
   toFiles(){
@@ -118,6 +117,7 @@ function loadSettings(sheetS){
   }
   return settings;
 }
+
 
 
 
