@@ -3,5 +3,5 @@ This little project of mine is to add users/viewers to files hosted on Google Dr
 
 There are three parts of this project:
 1. Minimal: Add all users listed in a sheet as viewers.
-2. Medium: Like above, but now we can choose which files/folders to share with individual users.
+2. Good-enough: Like above, but now we can choose which files/folders to share with individual users.
 3. Do-it-all: Let the user fill in a form, and automatically add he/she as a viewer.
