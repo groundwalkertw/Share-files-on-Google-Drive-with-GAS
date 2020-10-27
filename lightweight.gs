@@ -10,7 +10,7 @@ function permissionLW()
   
   const settings=loadSettings(sheetS);
   const googleCol=settings.users.gmail || 1; //where the column of Google accounts is
-  const errorCol=settings.users.error || 2; //where the column of errors is
+  const errorCol=settings.users.msg || 2; //where the column of errors is
   const urlCol=settings.files.url || 1;
   
   //key: whether to check the validity of individual Google accounts
