@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title></title>
+    <style>
+    body {
+      font-family:arial,calibri,helvetica;
+      font-size:15px;
+    }
+    p {
+      font-family:arial,calibri,helvetica;
+      font-size:15px;
+    }
+    a {
+      color: #6699ff;
+      text-decoration: none;
+    }
+    .center {
+     text-align: center;
+     font-size:17px;    
+     background-color: white;
+      color:  #9933ff;
+    }
+    .center a{
+      font-size:17px;
+      color: #6699ff;
+    }
+
+   </style>
+</head>
+<body>
+<p>Dear <?=title ?> <?=surname ?>:</p>
+<p>You've been added as a viewer of the files you requested. Please check your Google Drive or Gmail. Below is the link to your response; don't share it with others.</p>
+<div class="center"><a href="<?= url ?>">View or edit your response</a></div>  
+<hr>
+
+<p>Kind regards,<br>
+<?=sender?></p>
+
+</body>
+</html>
